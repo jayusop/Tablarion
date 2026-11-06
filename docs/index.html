@@ -235,16 +235,25 @@ brew install cmake
 
 git clone <span data-text="clone">https://github.com/jayusop/Tablarion-source.git</span>
 cd <span data-text="repo-name">Tablarion-source</span>
-<span class="c"># universal Release build (Apple Silicon + Intel) from the command line</span>
-./build_universal.sh -DTABLARION_SOURCE_URL=<span data-text="source">https://github.com/jayusop/Tablarion-source</span>
 
-<span class="c"># or work in Xcode</span>
+<span class="c"># command line: applesilicon | intel | universal | all</span>
+./build.sh universal -DTABLARION_SOURCE_URL=<span data-text="source">https://github.com/jayusop/Tablarion-source</span>
+
+<span class="c"># or work in Xcode (pick a scheme next to the Run button)</span>
+./setup.sh
 open build/Tablarion.xcodeproj</code></pre>
-  <p style="color:#a3a7af"><span lang="ko"><code>build_universal.sh</code>는 Xcode 프로젝트가 없으면 <code>setup.sh</code>로 만든 뒤 <b>Tablarion_All</b> 스킴을 Release로 빌드하고, 결과물이 arm64·x86_64 두 아키텍처를 모두 담았는지 <code>lipo</code>로 확인합니다. 빌드된 플러그인은 <code>~/Library/Audio/Plug-Ins</code>에 자동 복사되고, 결과물은 <code>build/Tablarion_artefacts/Release</code>에 생깁니다.</span><span lang="en"><code>build_universal.sh</code> runs <code>setup.sh</code> if there is no Xcode project yet, builds the <b>Tablarion_All</b> scheme in Release and checks with <code>lipo</code> that the binaries contain both arm64 and x86_64. The plug-ins are copied to <code>~/Library/Audio/Plug-Ins</code>; outputs land in <code>build/Tablarion_artefacts/Release</code>.</span></p>
-  <ul style="color:#a3a7af;font-size:14.5px;margin:0 0 0 1.2em;padding:0">
-    <li><span lang="ko">빌드는 기본이 <b>유니버설</b>입니다. Xcode에서는 실행 대상을 <b>Any Mac (Apple Silicon, Intel)</b>로 고르거나 <i>Product › Archive</i>를 쓰세요. <i>My Mac</i>으로 두면 지금 Mac의 아키텍처만 빌드됩니다.</span><span lang="en">Builds are <b>universal</b> by default. In Xcode, pick the run destination <b>Any Mac (Apple Silicon, Intel)</b> or use <i>Product › Archive</i>; with <i>My Mac</i> only your Mac's own architecture is built.</span></li>
-    <li><span lang="ko">개발 중 빠른 네이티브 빌드: <code>./setup.sh -DTABLARION_UNIVERSAL=OFF</code></span><span lang="en">Quicker native-only development build: <code>./setup.sh -DTABLARION_UNIVERSAL=OFF</code></span></li>
-    <li><span lang="ko"><code>build/</code>가 이미 있으면 <code>build_universal.sh</code>에 준 옵션은 적용되지 않습니다. 소스 URL 등 옵션을 바꿀 때는 <code>rm -rf build</code> 후 다시 실행하세요.</span><span lang="en">If <code>build/</code> already exists, options passed to <code>build_universal.sh</code> are ignored; run <code>rm -rf build</code> first when changing options such as the source URL.</span></li>
+  <p style="color:#a3a7af"><span lang="ko"><code>setup.sh</code>는 CPU별 구성과 Xcode 스킴을 만들고, <code>build.sh</code>는 원하는 구성을 빌드한 뒤 결과물의 아키텍처를 <code>lipo</code>로 보여 줍니다. 어느 Mac에서든 두 CPU용을 모두 빌드할 수 있습니다.</span><span lang="en"><code>setup.sh</code> creates one configuration and Xcode scheme per CPU; <code>build.sh</code> builds the one you ask for and shows each binary's architectures with <code>lipo</code>. Any Mac can build for both CPUs.</span></p>
+  <div class="table-wrap"><table>
+    <tr><th><span lang="ko">Xcode 스킴</span><span lang="en">Xcode scheme</span></th><th><code>build.sh</code></th><th>CPU</th><th><span lang="ko">결과물 폴더</span><span lang="en">Output folder</span></th></tr>
+    <tr><td><code>Tablarion - Apple Silicon</code></td><td><code>applesilicon</code></td><td>arm64</td><td><code>build/Tablarion_artefacts/AppleSilicon/</code></td></tr>
+    <tr><td><code>Tablarion - Intel</code></td><td><code>intel</code></td><td>x86_64</td><td><code>build/Tablarion_artefacts/Intel/</code></td></tr>
+    <tr><td><code>Tablarion - Universal</code></td><td><code>universal</code></td><td>arm64 + x86_64</td><td><code>build/Tablarion_artefacts/Universal/</code></td></tr>
+    <tr><td><code>Tablarion - Debug</code></td><td>—</td><td><span lang="ko">이 Mac의 CPU</span><span lang="en">this Mac's CPU</span></td><td><code>build/Tablarion_artefacts/Debug/</code></td></tr>
+  </table></div>
+  <ul style="color:#a3a7af;font-size:14.5px;margin:14px 0 0 1.2em;padding:0">
+    <li><span lang="ko">배포용 다운로드는 모든 Mac에서 돌아가는 <b>Universal</b> 빌드입니다. CPU별 빌드는 크기가 절반 정도입니다. 각 결과물 폴더에는 <code>Standalone/Tablarion.app</code>, <code>VST3/Tablarion.vst3</code>, <code>AU/Tablarion.component</code>가 생깁니다.</span><span lang="en">The release download is the <b>Universal</b> build, which runs on every supported Mac; per-CPU builds are about half the size. Each output folder holds <code>Standalone/Tablarion.app</code>, <code>VST3/Tablarion.vst3</code> and <code>AU/Tablarion.component</code>.</span></li>
+    <li><span lang="ko">빌드 후 VST3·AU는 <b>이 Mac의 CPU에서 돌아가는 경우에만</b> <code>~/Library/Audio/Plug-Ins</code>에 복사됩니다. Apple Silicon Mac에서 만든 Intel 빌드는 빌드 폴더에만 남습니다. 복사를 끄려면 <code>-DTABLARION_INSTALL_PLUGINS=OFF</code>.</span><span lang="en">After a build, the VST3 and AU are copied to <code>~/Library/Audio/Plug-Ins</code> <b>only if they run on this Mac's CPU</b>; an Intel build made on Apple Silicon stays in the build folder. Use <code>-DTABLARION_INSTALL_PLUGINS=OFF</code> to never copy.</span></li>
+    <li><span lang="ko">Apple Silicon Mac에서 Intel 스킴의 실행 대상은 <i>My Mac (Rosetta)</i> 또는 <i>Any Mac</i>이며 Xcode가 자동으로 고릅니다. 프로젝트 폴더를 옮기면 <code>./setup.sh</code>를 다시 실행하세요(스킴에 절대 경로가 저장됨).</span><span lang="en">On Apple Silicon, the Intel scheme's run destination is <i>My Mac (Rosetta)</i> or <i>Any Mac</i>, selected automatically. If you move the project folder, run <code>./setup.sh</code> again (schemes store absolute paths).</span></li>
   </ul>
   <h3 style="margin-top:28px"><span lang="ko">개발자 도구</span><span lang="en">Developer tools</span></h3>
 <pre><code>cmake -B build-cli -DTABLARION_BUILD_TOOLS=ON
