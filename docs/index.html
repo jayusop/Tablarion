@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablarion — Tablature Sound Module</title>
+<meta name="description" content="Guitar Pro 악보를 열어 연주하는 무료 macOS 가상 악기 (VST3 / AU / Standalone). A free macOS virtual instrument that plays Guitar Pro files.">
+<meta property="og:title" content="Tablarion — Tablature Sound Module">
+<meta property="og:description" content="Free macOS VST3 / AU / Standalone instrument that plays Guitar Pro files with an articulation-aware sound engine.">
+<meta property="og:image" content="icon.png">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icon.png" alt=""><span><span style="color:var(--amber)">Tab</span>larion</span></a>
+    <nav class="links">
+      <a href="#features"><span lang="ko">기능</span><span lang="en">Features</span></a>
+      <a href="#install"><span lang="ko">설치</span><span lang="en">Install</span></a>
+      <a href="#usage"><span lang="ko">사용법</span><span lang="en">Usage</span></a>
+      <a href="#build"><span lang="ko">빌드</span><span lang="en">Build</span></a>
+      <a href="#faq">FAQ</a>
+      <a href="licenses.html"><span lang="ko">라이선스</span><span lang="en">Licence</span></a>
+      <a data-link="repo" href="#">GitHub</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-set-lang="ko">KO</button><button data-set-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div>
+    <div class="eyebrow">Tablature Sound Module · macOS</div>
+    <h1>
+      <span lang="ko">Guitar Pro 악보를<br><span>그대로 연주</span>하는 악기</span>
+      <span lang="en">Your Guitar Pro tabs,<br><span>played for real</span></span>
+    </h1>
+    <p class="lead">
+      <span lang="ko">Tablarion은 Guitar Pro 파일을 열어 해머링·슬라이드·벤딩·하모닉스 같은 주법까지 해석해 연주하는 무료 가상 악기입니다. 모든 소리는 샘플 없이 코드로 합성됩니다.</span>
+      <span lang="en">Tablarion is a free virtual instrument that opens Guitar Pro files and plays them with an articulation-aware engine — hammer-ons, slides, bends, harmonics and more. Every sound is synthesised in code; no samples are shipped.</span>
+    </p>
+    <div class="cta">
+      <a class="btn primary" data-link="download" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
+        <span lang="ko">macOS용 다운로드</span><span lang="en">Download for macOS</span>
+      </a>
+      <a class="btn" data-link="source" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        <span lang="ko">소스 코드</span><span lang="en">Source code</span>
+      </a>
+    </div>
+    <div class="ver" id="ver"></div>
+    <div class="chips" style="margin-top:14px">
+      <span class="chip"><b>VST3</b> · <b>AU</b> · <b>Standalone</b></span>
+      <span class="chip">macOS 12+</span>
+      <span class="chip">Universal · Apple Silicon / Intel</span>
+      <span class="chip">AGPL-3.0</span>
+      <span class="chip"><span lang="ko">무료</span><span lang="en">Free</span></span>
+    </div>
+  </div>
+
+  <figure class="shot" style="margin:0">
+    <!-- docs/screenshot.png replaces the drawing below automatically. -->
+    <img class="real" src="screenshot.png" alt="Tablarion screenshot" hidden onload="this.hidden=false;document.getElementById('mock').remove()" onerror="this.remove()">
+    <div class="panel" id="mock" aria-hidden="true">
+      <div class="row">
+        <div class="p-brand"><span style="color:var(--amber)">Tab</span>larion<small>TABLATURE SOUND MODULE</small></div>
+        <div class="lcd"><div class="big">♩=128 &nbsp; BAR 017/064</div>GP7 · 6 TRACKS · HYBRID SF2</div>
+      </div>
+      <div class="row">
+        <div class="knobs">
+          <div class="knob"><i style="--r:20deg"></i>VOLUME</div>
+          <div class="knob"><i style="--r:0deg"></i>SPEED</div>
+          <div class="knob"><i style="--r:-40deg"></i>REVERB</div>
+          <div class="knob"><i style="--r:-80deg"></i>HUMANIZE</div>
+        </div>
+        <div class="p-btns"><span class="p-btn">|&lt;</span><span class="p-btn on">STOP</span><span class="p-btn">LOOP</span><span class="p-btn on">SYNC</span><span class="p-btn on">STRUM</span></div>
+      </div>
+      <div style="font-size:8px;color:var(--silk-dim);letter-spacing:.12em">POSITION</div>
+      <div class="pos"></div>
+      <div class="tracks">
+        <div class="hd"><span>#</span><span>TRACK</span><span>INSTRUMENT</span><span>ENGINE</span><span>LEVEL</span></div>
+        <div class="sel"><span>01</span><span>Lead Guitar</span><span>Distortion Gtr</span><span>Modeled</span><span class="meter"><b style="--w:78%"></b></span></div>
+        <div><span>02</span><span>Rhythm Guitar</span><span>Overdrive Gtr</span><span>Modeled</span><span class="meter"><b style="--w:64%"></b></span></div>
+        <div><span>03</span><span>Bass</span><span>Finger Bass</span><span>Modeled</span><span class="meter"><b style="--w:70%"></b></span></div>
+        <div><span>04</span><span>Keys</span><span>E-Piano</span><span>SoundFont</span><span class="meter"><b style="--w:41%"></b></span></div>
+        <div><span>05</span><span>Drums</span><span>GM Kit</span><span>Auto</span><span class="meter"><b style="--w:86%"></b></span></div>
+      </div>
+    </div>
+    <figcaption><span lang="ko">Tablarion 플러그인 화면</span><span lang="en">The Tablarion plug-in panel</span></figcaption>
+  </figure>
+</div>
+
+<!-- ================= FEATURES ================= -->
+<section id="features">
+  <h2><span lang="ko">주요 기능</span><span lang="en">Features</span></h2>
+  <p class="sub"><span lang="ko">악보를 MIDI처럼 단순 재생하지 않고, 기타리스트가 연주하듯 주법을 해석합니다.</span><span lang="en">It doesn't just play notes like MIDI — it interprets the score the way a guitarist would.</span></p>
+  <div class="grid">
+    <div class="card"><span class="ico">READERS</span>
+      <h3><span lang="ko">GP3 ~ GP8 파일 지원</span><span lang="en">GP3 – GP8 files</span></h3>
+      <p><span lang="ko">.gp, .gpx, .gp5, .gp4, .gp3 파일을 독자적인 구현으로 읽습니다. 끌어다 놓거나 OPEN으로 엽니다.</span><span lang="en">Reads .gp, .gpx, .gp5, .gp4 and .gp3 with an independent implementation. Drag and drop, or click OPEN.</span></p></div>
+    <div class="card"><span class="ico">CONDUCTOR</span>
+      <h3><span lang="ko">주법 해석 엔진</span><span lang="en">Articulation engine</span></h3>
+      <p><span lang="ko">반복·도돌이표, 템포 맵, 해머링/풀링, 슬라이드, 벤딩, 비브라토, 하모닉스, 트릴, 트레몰로, 스트로크, 스윙, 휴머나이즈.</span><span lang="en">Repeats and endings, tempo map, hammer-on/pull-off, slides, bends, vibrato, harmonics, trills, tremolo picking, strumming, swing, humanize.</span></p></div>
+    <div class="card"><span class="ico">STRINGS</span>
+      <h3><span lang="ko">물리 모델링 현악기</span><span lang="en">Physically modelled strings</span></h3>
+      <p><span lang="ko">이중 편광 웨이브가이드로 줄마다 독립 보이스를 만들고 팜뮤트·데드노트·픽업 위치까지 표현합니다.</span><span lang="en">Dual-polarisation waveguide with a voice per string, palm mute, dead notes and pickup-position comb.</span></p></div>
+    <div class="card"><span class="ico">ENSEMBLE</span>
+      <h3><span lang="ko">밴드 전체 사운드</span><span lang="en">The whole band</span></h3>
+      <p><span lang="ko">모달 피아노, FM 일렉트릭 피아노, 드로바 오르간, 현·관악 앙상블, 신스, 합성 GM 드럼킷.</span><span lang="en">Modal piano, FM e-piano, drawbar organ, string and brass ensembles, synths and a synthesised GM drum kit.</span></p></div>
+    <div class="card"><span class="ico">SF2</span>
+      <h3><span lang="ko">SoundFont 하이브리드</span><span lang="en">SoundFont hybrid</span></h3>
+      <p><span lang="ko">SF2 뱅크를 불러와 드럼·건반·오케스트라 파트에만 쓰고, 기타·베이스는 모델링 엔진을 유지할 수 있습니다.</span><span lang="en">Load an SF2 bank for drums, keys and orchestral parts while guitars and basses stay on the modelled engine.</span></p></div>
+    <div class="card"><span class="ico">DAW</span>
+      <h3><span lang="ko">DAW 연동 & WAV 내보내기</span><span lang="en">DAW sync & WAV export</span></h3>
+      <p><span lang="ko">SYNC로 DAW 트랜스포트·템포를 따라가고, MIDI 입력으로 파트를 직접 연주하며, 곡 전체를 24-bit WAV로 렌더링합니다.</span><span lang="en">SYNC follows the DAW transport and tempo, MIDI input plays any part, and EXPORT WAV renders the song to 24-bit WAV.</span></p></div>
+  </div>
+  <div class="formats"><span>.gp (GP7/8)</span><span>.gpx (GP6)</span><span>.gp5</span><span>.gp4</span><span>.gp3</span><span>.sf2</span></div>
+</section>
+
+<!-- ================= INSTALL ================= -->
+<section id="install">
+  <h2><span lang="ko">설치</span><span lang="en">Installation</span></h2>
+  <p class="sub"><span lang="ko">macOS 12 Monterey 이상이 필요합니다. 하나의 유니버설 바이너리로 Apple Silicon과 Intel Mac에서 모두 네이티브로 실행됩니다.</span><span lang="en">Requires macOS 12 Monterey or later. One universal binary runs natively on both Apple Silicon and Intel Macs.</span></p>
+  <ol class="steps">
+    <li>
+      <h3><span lang="ko">릴리스 다운로드</span><span lang="en">Download the release</span></h3>
+      <p><span lang="ko"><a data-link="releases" href="#">Releases 페이지</a>에서 <code>Tablarion-macOS.zip</code>을 받아 압축을 풉니다. 위의 <b>macOS용 다운로드</b> 버튼은 이 파일을 바로 받습니다.</span><span lang="en">Download <code>Tablarion-macOS.zip</code> from the <a data-link="releases" href="#">Releases page</a> and unzip it. The <b>Download for macOS</b> button above fetches this file directly.</span></p>
+    </li>
+    <li>
+      <h3><span lang="ko">플러그인 복사</span><span lang="en">Copy the plug-ins</span></h3>
+      <p><span lang="ko">쓰는 DAW에 맞는 파일만 복사해도 됩니다. Finder에서 <kbd>⌘⇧G</kbd>로 폴더를 열 수 있습니다.</span><span lang="en">Copy only the formats your DAW uses. In Finder, press <kbd>⌘⇧G</kbd> to open a folder by path.</span></p>
+      <div class="table-wrap" style="margin-top:12px"><table>
+        <tr><th><span lang="ko">파일</span><span lang="en">File</span></th><th><span lang="ko">복사할 위치</span><span lang="en">Copy to</span></th></tr>
+        <tr><td><code>Tablarion.vst3</code></td><td><code>~/Library/Audio/Plug-Ins/VST3</code></td></tr>
+        <tr><td><code>Tablarion.component</code></td><td><code>~/Library/Audio/Plug-Ins/Components</code> <span lang="ko">(Logic, GarageBand)</span><span lang="en">(Logic, GarageBand)</span></td></tr>
+        <tr><td><code>Tablarion.app</code></td><td><code>/Applications</code> <span lang="ko">(DAW 없이 단독 실행)</span><span lang="en">(runs without a DAW)</span></td></tr>
+      </table></div>
+    </li>
+    <li>
+      <h3><span lang="ko">macOS 보안 경고 해제</span><span lang="en">Clear the macOS quarantine flag</span></h3>
+      <p><span lang="ko">공증(notarize)되지 않은 빌드라면 macOS가 "손상되었거나 확인할 수 없는 개발자" 경고를 띄웁니다. 터미널에서 아래 명령으로 해제하세요.</span><span lang="en">If the build isn't notarised, macOS reports it as damaged or from an unidentified developer. Clear the flag in Terminal:</span></p>
+<pre><code>xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/VST3/"Tablarion.vst3"
+xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/"Tablarion.component"
+xattr -dr com.apple.quarantine /Applications/"Tablarion.app"</code></pre>
+    </li>
+    <li>
+      <h3><span lang="ko">DAW에서 다시 스캔</span><span lang="en">Rescan in your DAW</span></h3>
+      <p><span lang="ko">DAW를 재시작하거나 플러그인을 다시 스캔한 뒤 악기(Instrument) 트랙에 <b>Tablarion</b>을 올립니다. AU가 안 보이면 아래 명령으로 검증해 보세요.</span><span lang="en">Restart or rescan, then insert <b>Tablarion</b> on an instrument track. If the AU doesn't show up, validate it:</span></p>
+<pre><code>auval -v aumu Tbln Tblr</code></pre>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= USAGE ================= -->
+<section id="usage">
+  <h2><span lang="ko">사용법</span><span lang="en">Usage</span></h2>
+  <p class="sub"><span lang="ko">악보 파일을 패널에 끌어다 놓고 PLAY를 누르면 됩니다.</span><span lang="en">Drop a score on the panel and press PLAY.</span></p>
+  <div class="table-wrap"><table>
+    <tr><th><span lang="ko">컨트롤</span><span lang="en">Control</span></th><th><span lang="ko">설명</span><span lang="en">What it does</span></th></tr>
+    <tr><td><code>OPEN</code></td><td><span lang="ko">Guitar Pro 파일 열기 (패널 아무 곳에나 드래그 앤 드롭도 가능)</span><span lang="en">Open a Guitar Pro file (or drop it anywhere on the panel)</span></td></tr>
+    <tr><td><code>CLOSE</code></td><td><span lang="ko">열린 악보를 닫고 빈 상태로 돌아갑니다. 불러온 SoundFont와 설정은 유지됩니다</span><span lang="en">Close the current score and return to the empty state; the loaded SoundFont and settings are kept</span></td></tr>
+    <tr><td><code>|&lt;</code></td><td><span lang="ko">곡의 처음으로 돌아가기</span><span lang="en">Return to the start</span></td></tr>
+    <tr><td><code>PLAY / STOP</code></td><td><span lang="ko">재생 / 정지 (내부 트랜스포트)</span><span lang="en">Start / stop playback (internal transport)</span></td></tr>
+    <tr><td><code>LOOP</code></td><td><span lang="ko">곡 반복 재생</span><span lang="en">Loop the song</span></td></tr>
+    <tr><td><code>POSITION</code></td><td><span lang="ko">재생 위치(마디) 이동</span><span lang="en">Jump to a bar</span></td></tr>
+    <tr><td><code>SPEED</code></td><td><span lang="ko">재생 속도 25–200% — 연습할 때 유용. 더블클릭하면 100%로 돌아갑니다</span><span lang="en">Playback speed 25–200% — handy for practice. Double-click to reset to 100%</span></td></tr>
+    <tr><td><code>SYNC</code></td><td><span lang="ko">DAW 트랜스포트·템포를 따라감 (곡의 1마디 = DAW 1마디)</span><span lang="en">Follow DAW transport and tempo (song bar 1 = DAW bar 1)</span></td></tr>
+    <tr><td><code>STRUM</code></td><td><span lang="ko">기타 코드를 실제로 긁듯이 줄마다 시차를 두고 연주 (자연스러운 스트로크) 켜기/끄기</span><span lang="en">Toggle natural strumming: guitar chords are played string by string like a real strum</span></td></tr>
+    <tr><td><code>VOLUME · REVERB · HUMANIZE</code></td><td><span lang="ko">전체 음량, 홀 리버브 양, 타이밍·세기 인간미</span><span lang="en">Master level, hall reverb amount, timing/velocity humanize</span></td></tr>
+    <tr><td><code>PART</code></td><td><span lang="ko">파트 행을 클릭하면 MIDI 입력이 그 트랙의 악기로 연주됩니다</span><span lang="en">Click a part row and MIDI input plays that track's instrument</span></td></tr>
+    <tr><td><code>M · S · VOLUME · PAN</code></td><td><span lang="ko">트랙별 뮤트, 솔로, 음량, 팬</span><span lang="en">Per-track mute, solo, level and pan</span></td></tr>
+    <tr><td><code>ENGINE</code></td><td><span lang="ko">트랙별 음원: Auto / Modeled / SoundFont</span><span lang="en">Per-track source: Auto / Modeled / SoundFont</span></td></tr>
+    <tr><td><code>SOUND SOURCE</code></td><td><span lang="ko">전체 음원: Modeled(내장) / SoundFont / Hybrid</span><span lang="en">Global source: Modeled (built-in) / SoundFont / Hybrid</span></td></tr>
+    <tr><td><code>EXPORT WAV</code></td><td><span lang="ko">곡 전체를 24-bit WAV로 렌더링</span><span lang="en">Render the whole song to a 24-bit WAV</span></td></tr>
+    <tr><td><code>LOAD SF2</code></td><td><span lang="ko">SoundFont 메뉴: 불러오기, 아래 폴더에 있는 뱅크 바로 선택, 해제. <code>.sf2</code> 파일을 패널에 끌어다 놓아도 불러옵니다</span><span lang="en">SoundFont menu: load, pick a bank from the folders below, unload. You can also drop a <code>.sf2</code> onto the panel</span></td></tr>
+    <tr><td><code>(i) ABOUT</code></td><td><span lang="ko">왼쪽 위 로고 영역을 클릭하면 버전, 라이선스, 소스 코드 주소, 상표 고지를 보여 줍니다</span><span lang="en">Click the logo area (top left) for version, licence, source-code address and trademark notices</span></td></tr>
+  </table></div>
+
+  <div class="two" style="margin-top:32px">
+    <div>
+      <h3><span lang="ko">SoundFont 사용하기</span><span lang="en">Using SoundFonts</span></h3>
+      <p style="color:#a3a7af;font-size:14.5px"><span lang="ko"><b>LOAD SF2</b> 버튼의 <b>Load SoundFont (.sf2)…</b>로 뱅크를 불러온 뒤 SOUND SOURCE를 <b>Hybrid</b>로 두면, 주법 표현이 뛰어난 모델링 기타·베이스는 그대로 두고 드럼·건반·오케스트라만 SoundFont로 연주합니다. 트랙의 ENGINE 설정으로 개별 지정할 수도 있습니다.</span><span lang="en">Load a bank with <b>LOAD SF2 → Load SoundFont (.sf2)…</b> and set SOUND SOURCE to <b>Hybrid</b>: the modelled guitars and basses, which handle techniques best, stay put while drums, keys and orchestral parts use the SoundFont. Each track's ENGINE setting can override this.</span></p>
+    </div>
+    <div>
+      <h3><span lang="ko">자동 로드</span><span lang="en">Auto-load</span></h3>
+      <p style="color:#a3a7af;font-size:14.5px"><span lang="ko">아래 폴더에 <code>.sf2</code>를 넣어 두면 시작할 때 첫 번째 뱅크를 자동으로 불러오고 SOUND SOURCE가 <b>Hybrid</b>로 설정됩니다. 폴더가 비어 있으면 아무것도 불러오지 않습니다.</span><span lang="en">Put a <code>.sf2</code> in this folder and the first bank loads on start-up with SOUND SOURCE set to <b>Hybrid</b>. Nothing loads if the folder is empty.</span></p>
+<pre><code>~/Library/Application Support/Tablarion/SoundFonts</code></pre>
+      <p style="color:#a3a7af;font-size:14.5px"><span lang="ko">LOAD SF2 메뉴에는 다음 폴더의 뱅크도 바로 나타납니다.</span><span lang="en">The LOAD SF2 menu also lists banks from these folders.</span></p>
+<pre><code>~/Documents/Tablarion/SoundFonts
+~/Library/Audio/Sounds/Banks
+/Library/Audio/Sounds/Banks</code></pre>
+    </div>
+  </div>
+
+  <div class="card" id="gm-bank" style="margin-top:28px">
+    <span class="ico">OPTIONAL DOWNLOAD</span>
+    <h3><span lang="ko">Tablarion GM SoundFont (선택 사항)</span><span lang="en">Tablarion GM SoundFont (optional)</span></h3>
+    <p><span lang="ko">Tablarion의 모델링 악기를 직접 렌더링해 만든 General MIDI 뱅크입니다. 128개 GM 악기(뱅크 0)와 GM 드럼킷(뱅크 128)이 들어 있으며, 제3자 샘플은 전혀 쓰지 않았습니다. 기타·베이스는 앰프를 거치지 않은 원음(dry)으로 담겨 있어 Tablarion이 자체 앰프·캐비닛 체인을 덧입히고, 28번(뮤트 기타)·31번(기타 하모닉스)은 데드노트·하모닉스 주법용으로 쓰입니다. 용량이 커서(약 640 MB) 플러그인과 따로 받습니다. 받은 파일을 위의 자동 로드 폴더에 넣으면 됩니다. 이 뱅크도 AGPL-3.0-or-later로 배포되며, 이 뱅크로 만든 음악은 만든 사람의 것입니다.</span><span lang="en">A General MIDI bank rendered from Tablarion's own modelled instruments: all 128 GM programs (bank 0) and a GM drum kit (bank 128), with no third-party samples. Guitars and basses are dry so Tablarion can add its own amp and cabinet chain; programs 28 (muted guitar) and 31 (guitar harmonics) double as dead-note and harmonic articulation layers. Because it's large (about 640 MB) it is a separate download — drop it into the auto-load folder above. The bank is also distributed under the AGPL-3.0-or-later; music you make with it is yours.</span></p>
+    <p style="margin-top:14px"><a class="btn" data-link="gm-bank" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg><span lang="ko">GM SoundFont 받기 (.sf2)</span><span lang="en">Download GM SoundFont (.sf2)</span></a></p>
+  </div>
+</section>
+
+<!-- ================= ENGINE ================= -->
+<section id="engine">
+  <h2><span lang="ko">엔진 구성</span><span lang="en">Engine overview</span></h2>
+  <p class="sub"><span lang="ko">JUCE 8 기반 C++17로 작성되었습니다.</span><span lang="en">Written in C++17 on JUCE 8.</span></p>
+  <div class="table-wrap"><table>
+    <tr><th><span lang="ko">계층</span><span lang="en">Layer</span></th><th><span lang="ko">구현</span><span lang="en">Implementation</span></th></tr>
+    <tr><td><code>Readers</code></td><td>GP3/4/5 binary, GP6 BCFZ/BCFS container, GP7/8 zip + GPIF XML</td></tr>
+    <tr><td><code>Conductor</code></td><td><span lang="ko">반복·다른 엔딩, 템포 맵, 타이, 렛 링, 해머링/풀링, 레가토·시프트 슬라이드, 슬라이드 인/아웃, 벤딩, 와미, 비브라토, 내추럴/인공/핀치/태핑 하모닉스, 트릴, 트레몰로 피킹, 꾸밈음, 브러시, 아르페지오·라스게아도, 스트로크, 스윙, 휴머나이즈</span><span lang="en">Repeats and alternate endings, tempo map, ties, let ring, hammer-on/pull-off, legato and shift slides, slide in/out, bends, whammy, vibrato, natural/artificial/pinch/tapped harmonics, trills, tremolo picking, grace notes, brush, arpeggio and rasgueado, strumming, swing, humanize</span></td></tr>
+    <tr><td><code>Strings</code></td><td><span lang="ko">이중 편광 웨이브가이드: 라그랑주 분수 지연, 위상 보정 분산 올패스, 주파수 의존 감쇠, 팜뮤트, 데드노트, 픽업 위치 콤</span><span lang="en">Dual-polarisation waveguide: Lagrange fractional delay, dispersion allpass with phase compensation, frequency-dependent decay, palm mute, dead notes, pickup-position comb</span></td></tr>
+    <tr><td><code>Keys</code></td><td><span lang="ko">비조화 배음 모달 피아노, FM 타인 일렉트릭 피아노, 드로바 오르간, 모달 말렛</span><span lang="en">Modal piano with inharmonic partials and double-string beating, FM tine e-piano, drawbar organ, modal mallets</span></td></tr>
+    <tr><td><code>Others</code></td><td><span lang="ko">VA 앙상블(스트링, 브라스, 리드, 플루트, 콰이어, 패드, 리드 신스, 신스 베이스), 하이햇 초크가 있는 합성 GM 드럼킷</span><span lang="en">VA ensembles (strings, brass, reeds, flute, choir, pads, leads, synth bass), synthesised GM drum kit with hi-hat choke</span></td></tr>
+    <tr><td><code>SoundFont 2</code></td><td><span lang="ko">전체 제너레이터 모델, DAHDSR 엔벨로프, 필터, LFO, 루프, 익스클루시브 클래스, 기타 주법</span><span lang="en">Full generator model, DAHDSR envelopes, filter, LFOs, loops, exclusive classes, guitar articulations</span></td></tr>
+    <tr><td><code>FX</code></td><td><span lang="ko">4배 오버샘플링 앰프 시뮬(클린/재즈/크런치/하이게인/베이스)과 캐비닛, 어쿠스틱 바디 공명, 코러스, 컴프레서, FDN 홀 리버브, 글루 컴프레서, 룩어헤드 리미터</span><span lang="en">4× oversampled amp sims (clean/jazz/crunch/high-gain/bass) with cabinet, acoustic body resonator, chorus, compressors, FDN hall reverb, glue compressor, look-ahead limiter</span></td></tr>
+  </table></div>
+</section>
+
+<!-- ================= BUILD ================= -->
+<section id="build">
+  <h2><span lang="ko">소스에서 빌드</span><span lang="en">Build from source</span></h2>
+  <p class="sub"><span lang="ko">Xcode와 CMake가 필요합니다. <code>setup.sh</code>가 JUCE 8.0.9를 받아 Xcode 프로젝트를 만듭니다.</span><span lang="en">Requires Xcode and CMake. <code>setup.sh</code> fetches JUCE 8.0.9 and generates the Xcode project.</span></p>
+<pre><code><span class="c"># once</span>
+brew install cmake
+
+git clone <span data-text="clone">https://github.com/jayusop/Tablarion-source.git</span>
+cd <span data-text="repo-name">Tablarion-source</span>
+<span class="c"># universal Release build (Apple Silicon + Intel) from the command line</span>
+./build_universal.sh -DTABLARION_SOURCE_URL=<span data-text="source">https://github.com/jayusop/Tablarion-source</span>
+
+<span class="c"># or work in Xcode</span>
+open build/Tablarion.xcodeproj</code></pre>
+  <p style="color:#a3a7af"><span lang="ko"><code>build_universal.sh</code>는 Xcode 프로젝트가 없으면 <code>setup.sh</code>로 만든 뒤 <b>Tablarion_All</b> 스킴을 Release로 빌드하고, 결과물이 arm64·x86_64 두 아키텍처를 모두 담았는지 <code>lipo</code>로 확인합니다. 빌드된 플러그인은 <code>~/Library/Audio/Plug-Ins</code>에 자동 복사되고, 결과물은 <code>build/Tablarion_artefacts/Release</code>에 생깁니다.</span><span lang="en"><code>build_universal.sh</code> runs <code>setup.sh</code> if there is no Xcode project yet, builds the <b>Tablarion_All</b> scheme in Release and checks with <code>lipo</code> that the binaries contain both arm64 and x86_64. The plug-ins are copied to <code>~/Library/Audio/Plug-Ins</code>; outputs land in <code>build/Tablarion_artefacts/Release</code>.</span></p>
+  <ul style="color:#a3a7af;font-size:14.5px;margin:0 0 0 1.2em;padding:0">
+    <li><span lang="ko">빌드는 기본이 <b>유니버설</b>입니다. Xcode에서는 실행 대상을 <b>Any Mac (Apple Silicon, Intel)</b>로 고르거나 <i>Product › Archive</i>를 쓰세요. <i>My Mac</i>으로 두면 지금 Mac의 아키텍처만 빌드됩니다.</span><span lang="en">Builds are <b>universal</b> by default. In Xcode, pick the run destination <b>Any Mac (Apple Silicon, Intel)</b> or use <i>Product › Archive</i>; with <i>My Mac</i> only your Mac's own architecture is built.</span></li>
+    <li><span lang="ko">개발 중 빠른 네이티브 빌드: <code>./setup.sh -DTABLARION_UNIVERSAL=OFF</code></span><span lang="en">Quicker native-only development build: <code>./setup.sh -DTABLARION_UNIVERSAL=OFF</code></span></li>
+    <li><span lang="ko"><code>build/</code>가 이미 있으면 <code>build_universal.sh</code>에 준 옵션은 적용되지 않습니다. 소스 URL 등 옵션을 바꿀 때는 <code>rm -rf build</code> 후 다시 실행하세요.</span><span lang="en">If <code>build/</code> already exists, options passed to <code>build_universal.sh</code> are ignored; run <code>rm -rf build</code> first when changing options such as the source URL.</span></li>
+  </ul>
+  <h3 style="margin-top:28px"><span lang="ko">개발자 도구</span><span lang="en">Developer tools</span></h3>
+<pre><code>cmake -B build-cli -DTABLARION_BUILD_TOOLS=ON
+cmake --build build-cli --config Release
+
+ScoreTest  &lt;file|dir&gt;                      <span class="c"># parser regression test</span>
+RenderTest &lt;score&gt; &lt;out.wav&gt; [sec] [sf2]   <span class="c"># offline render + timing/level report</span>
+UISnapshot &lt;score&gt; &lt;out.png&gt;               <span class="c"># render the editor to an image</span>
+SF2Builder &lt;out.sf2&gt; [--bake-guitar-fx] [--rate 44100] [--step N]
+                                           <span class="c"># render the modelled instruments into a GM .sf2</span></code></pre>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <h2>FAQ</h2>
+  <p class="sub"></p>
+  <details><summary><span lang="ko">"손상되었기 때문에 열 수 없습니다"라고 나와요.</span><span lang="en">macOS says the plug-in "is damaged and can't be opened".</span></summary>
+    <div><span lang="ko">다운로드한 파일에 붙은 격리(quarantine) 속성 때문입니다. <a href="#install">설치 3단계</a>의 <code>xattr</code> 명령을 실행한 뒤 DAW를 다시 시작하세요.</span><span lang="en">That's the quarantine flag on downloaded files. Run the <code>xattr</code> commands from <a href="#install">step 3</a> and restart your DAW.</span></div></details>
+  <details><summary><span lang="ko">DAW에서 플러그인이 보이지 않아요.</span><span lang="en">My DAW doesn't list the plug-in.</span></summary>
+    <div><span lang="ko">파일이 사용자 Library(<code>~/Library</code>) 아래 올바른 폴더에 있는지 확인하고 플러그인을 다시 스캔하세요. Logic·GarageBand는 AU(<code>.component</code>)만, Ableton Live·Cubase·Reaper·Bitwig 등은 VST3도 사용합니다.</span><span lang="en">Check the files are in the right folders under your user Library (<code>~/Library</code>) and rescan. Logic and GarageBand use AU (<code>.component</code>) only; Live, Cubase, Reaper, Bitwig and others also load VST3.</span></div></details>
+  <details><summary><span lang="ko">Guitar Pro가 설치되어 있어야 하나요?</span><span lang="en">Do I need Guitar Pro installed?</span></summary>
+    <div><span lang="ko">아니요. 파일 형식을 독자적으로 구현해 읽으며, Guitar Pro 소프트웨어나 사운드 데이터는 전혀 필요하지 않습니다.</span><span lang="en">No. The file formats are read by an independent implementation; no Guitar Pro software or sound data is needed.</span></div></details>
+  <details><summary><span lang="ko">SoundFont는 어디서 구하나요?</span><span lang="en">Where do I get SoundFonts?</span></summary>
+    <div><span lang="ko">Releases에서 <a href="#gm-bank">Tablarion GM SoundFont</a>를 받을 수 있고, 다른 GM 호환 <code>.sf2</code> 뱅크도 쓸 수 있습니다. 다른 뱅크는 각자의 라이선스를 따르니 배포·상업적 이용 조건을 확인하세요. SoundFont 없이도 내장 모델링 엔진으로 모든 파트가 연주됩니다.</span><span lang="en">Get the <a href="#gm-bank">Tablarion GM SoundFont</a> from Releases, or use any other GM-compatible <code>.sf2</code> bank (check its own licence). Without one, the built-in modelled engine plays every part.</span></div></details>
+  <details><summary><span lang="ko">상업적으로 써도 되나요?</span><span lang="en">Can I use it commercially?</span></summary>
+    <div><span lang="ko">이 플러그인으로 만든 음악에는 제한이 없습니다. 플러그인 자체를 수정·재배포할 때는 AGPLv3 조건(소스 공개 등)을 따라야 합니다.</span><span lang="en">Music you make with it is yours. Modifying or redistributing the plug-in itself must follow the AGPLv3 (including publishing source).</span></div></details>
+</section>
+
+<!-- ================= LICENCE ================= -->
+<section id="license" class="legal">
+  <h2><span lang="ko">라이선스</span><span lang="en">Licence</span></h2>
+  <p class="sub"><span lang="ko">무료로 쓰고, 무료로 나눌 수 있습니다. 대신 소스는 항상 공개됩니다.</span><span lang="en">Free to use and free to share — with the source always open.</span></p>
+
+  <div class="grid">
+    <div class="card"><span class="ico">LICENCE</span>
+      <h3>AGPL-3.0-or-later</h3>
+      <p><span lang="ko">Tablarion 전체는 GNU Affero GPL v3 이상으로 배포됩니다. 비용·계약 없이 받아서 쓰고, 고치고, 나눌 수 있습니다.</span><span lang="en">The whole of Tablarion is under the GNU Affero GPL v3 or later. Get it, use it, change it and share it with no fee and no contract.</span></p></div>
+    <div class="card"><span class="ico">YOUR MUSIC</span>
+      <h3><span lang="ko">만든 음악은 여러분의 것</span><span lang="en">Your music is yours</span></h3>
+      <p><span lang="ko">플러그인으로 연주·렌더링한 오디오에는 아무 라이선스 의무가 없습니다. 상업 음반·영상·방송에도 자유롭게 쓰세요.</span><span lang="en">Audio you play or render with it carries no licence obligations. Use it freely in commercial releases, video and broadcast.</span></p></div>
+    <div class="card"><span class="ico">SHARING</span>
+      <h3><span lang="ko">재배포·수정 조건</span><span lang="en">Redistributing or modifying</span></h3>
+      <p><span lang="ko">바이너리를 다시 배포하면 전체 소스와 라이선스 파일을 함께 제공해야 하고, 수정본은 AGPLv3를 유지하며 수정 사실을 밝혀야 합니다.</span><span lang="en">Redistributing binaries means providing the full source and licence files; modified versions stay under the AGPLv3 and must say they were modified.</span></p></div>
+  </div>
+
+  <h3 style="margin-top:36px"><span lang="ko">제3자 소프트웨어</span><span lang="en">Third-party software</span></h3>
+  <p><span lang="ko">JUCE와 Steinberg VST3 SDK는 "오픈소스" 또는 "상용" 라이선스 중 하나를 고르도록 되어 있고, 이 프로젝트는 무료 공개를 위해 오픈소스 쪽(JUCE: AGPLv3, VST3 SDK: GPLv3)을 택했습니다. 두 라이선스는 결합이 허용되며(각 13조) 결합된 프로그램은 AGPLv3를 따릅니다. 나머지 구성 요소는 모두 자유로운 허용형(permissive) 라이선스입니다.</span><span lang="en">JUCE and the Steinberg VST3 SDK each offer an open-source or a commercial licence; for free distribution this project uses the open-source options (JUCE: AGPLv3, VST3 SDK: GPLv3). They may be combined (§13 of each) and the combined program is under the AGPLv3. Every other component uses a permissive licence.</span></p>
+  <div class="table-wrap"><table>
+    <tr><th><span lang="ko">구성 요소</span><span lang="en">Component</span></th><th><span lang="ko">라이선스</span><span lang="en">Licence</span></th><th><span lang="ko">용도</span><span lang="en">Used for</span></th></tr>
+    <tr><td>JUCE 8.0.9</td><td>AGPLv3 <span lang="ko">(선택)</span><span lang="en">(option chosen)</span></td><td><span lang="ko">GUI·오디오·플러그인 프레임워크</span><span lang="en">GUI, audio and plug-in framework</span></td></tr>
+    <tr><td>Steinberg VST3 SDK 3.7.12</td><td>GPLv3 <span lang="ko">(선택)</span><span lang="en">(option chosen)</span></td><td><span lang="ko">VST3 플러그인 형식</span><span lang="en">VST3 plug-in format</span></td></tr>
+    <tr><td>Apple AudioUnitSDK</td><td>Apache 2.0</td><td><span lang="ko">AU 플러그인 형식</span><span lang="en">AU plug-in format</span></td></tr>
+    <tr><td>zlib</td><td>zlib</td><td><span lang="ko">.gp(zip) 압축 해제</span><span lang="en">Decompressing .gp (zip)</span></td></tr>
+    <tr><td>libpng</td><td>libpng</td><td><span lang="ko">PNG 이미지</span><span lang="en">PNG images</span></td></tr>
+    <tr><td>IJG libjpeg</td><td>IJG</td><td><span lang="ko">JPEG 이미지</span><span lang="en">JPEG images</span></td></tr>
+    <tr><td>FLAC · Ogg Vorbis</td><td>BSD 3-Clause</td><td><span lang="ko">오디오 형식 지원</span><span lang="en">Audio format support</span></td></tr>
+    <tr><td>HarfBuzz</td><td>Old MIT</td><td><span lang="ko">텍스트 셰이핑</span><span lang="en">Text shaping</span></td></tr>
+    <tr><td>SheenBidi</td><td>Apache 2.0</td><td><span lang="ko">양방향 텍스트</span><span lang="en">Bidirectional text</span></td></tr>
+  </table></div>
+  <p style="font-size:13.5px;color:var(--silk-dim);margin-top:12px">This software is based in part on the work of the Independent JPEG Group.</p>
+  <p><a class="btn" href="licenses.html"><span lang="ko">라이선스 상세·전문 보기</span><span lang="en">Full licence details and texts</span></a>
+     &nbsp; <a data-link="tpl" href="#">THIRD_PARTY_LICENSES.txt</a> · <a data-link="license" href="#">LICENSE</a> · <a data-link="notices" href="#">THIRD_PARTY_NOTICES.md</a></p>
+
+  <h3 style="margin-top:32px"><span lang="ko">소리·콘텐츠·상표</span><span lang="en">Sounds, content and trademarks</span></h3>
+  <p style="font-size:14px"><span lang="ko">모든 악기 소리는 원본 코드로 실시간 합성되며 플러그인에는 샘플이나 사운드 뱅크가 들어 있지 않습니다. 따로 받는 Tablarion GM SoundFont도 같은 코드로 렌더링한 자체 제작물이며 AGPL-3.0-or-later로 배포됩니다. 사용자가 불러온 SoundFont는 각 뱅크의 라이선스를 따릅니다. Guitar Pro 파일은 독자적인 구현으로 읽으며 Guitar Pro 소프트웨어·코드·사운드는 포함되지 않습니다.</span><span lang="en">Every instrument sound is synthesised in real time by original code; the plug-in contains no samples or sound banks. The separately downloadable Tablarion GM SoundFont is rendered by the same code and is also under the AGPL-3.0-or-later. SoundFonts you load are covered by their own licences. Guitar Pro files are read by an independent implementation; no Guitar Pro software, code or sounds are included.</span></p>
+  <p style="font-size:13px;color:var(--silk-dim)"><span lang="ko">VST는 Steinberg Media Technologies GmbH의 등록 상표입니다. Audio Units와 macOS는 Apple Inc.의 상표입니다. Guitar Pro는 Arobas Music의 상표입니다. SoundFont는 Creative Technology Ltd.의 등록 상표입니다. 이 이름들은 호환성을 설명하기 위해서만 쓰이며, Tablarion는 이들 회사와 제휴하거나 보증받지 않은 독립 프로젝트입니다.</span><span lang="en">VST is a registered trademark of Steinberg Media Technologies GmbH. Audio Units and macOS are trademarks of Apple Inc. Guitar Pro is a trademark of Arobas Music. SoundFont is a registered trademark of Creative Technology Ltd. These names describe compatibility only; Tablarion is an independent project, not affiliated with or endorsed by these companies.</span></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 the Tablarion contributors · AGPL-3.0-or-later</span>
+    <span><a data-link="repo" href="#">GitHub</a> · <a data-link="source" href="#"><span lang="ko">소스 코드</span><span lang="en">Source</span></a> · <a data-link="releases" href="#">Releases</a> · <a href="licenses.html"><span lang="ko">라이선스</span><span lang="en">Licences</span></a> · <a data-link="issues" href="#"><span lang="ko">문제 신고</span><span lang="en">Report an issue</span></a></span>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
